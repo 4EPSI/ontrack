@@ -4,7 +4,9 @@
       <NavItem 
         v-for="icon, page in navItems" 
         :key="page"
-        :to="`#${page}`">
+        :to="`#${page}`"
+        :class="{ 'bg-gray-200 pointer-events-none': page === currentPage}"
+        @click="currentPage = page">
         <component :is="icon" class="h-6 w-6" /> {{ page }}
       </NavItem>
     </ul>
@@ -19,4 +21,6 @@ const navItems = {
   activities: ListBulletIcon,
   progress: ChartBarIcon
 }
+
+const currentPage = ref('timeline')
 </script>
