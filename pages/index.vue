@@ -30,19 +30,11 @@
 
   <nav class="sticky bottom-0 z-10 bg-white">
     <ul class="flex items-center justify-around border-t">
-      <li class="flex-1">
-        <nuxt-link class="flex flex-col items-center p-2 text-xs capitalize" tp="#timeline">
-          <ClockIcon class="w-6 h-6" /> timeline
-        </nuxt-link>
-      </li>
-      <li class="flex-1">
-        <nuxt-link class="flex flex-col items-center p-2 text-xs capitalize" tp="#activites">
-          <ListBulletIcon class="w-6 h-6" /> activites
-        </nuxt-link>
-      </li>
-      <li class="flex-1">
-        <nuxt-link class="flex flex-col items-center p-2 text-xs capitalize" tp="#progress">
-          <ChartBarIcon class="w-6 h-6" /> progress
+      <li v-for="page in navItems" :key="page" class="flex-1">
+        <nuxt-link :to="`#${page}`" class="flex flex-col items-center p-2 text-xs capitalize">
+          <ClockIcon v-if="page === 'timeline'" class="w-6 h-6" />
+          <ListBulletIcon v-else-if="page === 'activites'" class="w-6 h-6" />
+          <ChartBarIcon v-else class="w-6 h-6" /> {{ page }}
         </nuxt-link>
       </li>
     </ul>
@@ -53,4 +45,6 @@
 <script setup>
 import { CheckCircleIcon } from '@heroicons/vue/24/solid'
 import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/outline'
+
+const navItems = ['timeline', 'activites', 'progress']
 </script>
