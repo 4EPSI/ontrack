@@ -16,7 +16,7 @@ import { ClockIcon, ListBulletIcon, ChartBarIcon } from '@heroicons/vue/24/outli
 
 const navItems = {
   timeline: ClockIcon,
-  activites: ListBulletIcon,
+  activities: ListBulletIcon,
   progress: ChartBarIcon
 }
 </script>
