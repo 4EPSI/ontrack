@@ -1,11 +1,19 @@
 <template>
-  <TheHeader />
+  <TheHeader 
+    @goToTimeline="goTo(PAGE_TIMELINE)" 
+    @goToProgress="goTo(PAGE_PROGRESS)"
+  />
+
   <main class="flex flex-grow flex-col">
     <TheTimeline v-show="currentPage === PAGE_TIMELINE" />
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
-  <TheNav @navigate="currentPage = $event" :current-page="currentPage" />
+
+  <TheNav 
+    :current-page="currentPage" 
+    @navigate="goTo($event)" 
+  />
 </template>
 
 <script setup>
@@ -33,4 +41,8 @@ const normalizePageHash = () => {
 onMounted(() => {
   currentPage.value = normalizePageHash()
 })
+
+function goTo(page) {
+  currentPage.value = page
+}
 </script>
