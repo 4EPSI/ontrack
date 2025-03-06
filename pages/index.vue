@@ -1,7 +1,6 @@
 <template>
   <TheHeader 
-    @goToTimeline="goTo(PAGE_TIMELINE)" 
-    @goToProgress="goTo(PAGE_PROGRESS)"
+    @navigate="goTo($event)"
   />
 
   <main class="flex flex-grow flex-col">

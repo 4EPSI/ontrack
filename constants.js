@@ -6,6 +6,7 @@ export const PAGE_PROGRESS = 'progress';
 
 // TIMELINE
 export const HOURS_IN_DAY = 24
+export const MIDNIGHT_HOUR = 0
 
 
 // ICON
