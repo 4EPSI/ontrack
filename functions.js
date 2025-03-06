@@ -1,4 +1,9 @@
-import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '../constants'
+import { 
+  PAGE_TIMELINE,
+  PAGE_ACTIVITIES,
+  PAGE_PROGRESS, 
+  HOURS_IN_DAY 
+} from '../constants'
 
 export const normalizePageHash = () => {
   if(process.client) {
@@ -12,4 +17,14 @@ export const normalizePageHash = () => {
     return PAGE_TIMELINE
   }
   return PAGE_TIMELINE
+}
+
+// TIMELINE
+
+export const generateTimelineItems = () => {
+  const timelineItems = []
+  for(let hour = 0; hour < HOURS_IN_DAY; hour++) {
+    timelineItems.push({ hour })
+  }
+  return timelineItems
 }
