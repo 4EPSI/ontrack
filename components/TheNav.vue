@@ -20,7 +20,10 @@ import NavItem from './NavItem.vue'
 defineProps({
   currentPage: {
     type: String,
-    required: true
+    required: true,
+    validator(currentPage) {
+      return Object.keys(NAV_ITEMS).includes(currentPage)
+    }
   }
 })
 
