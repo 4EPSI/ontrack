@@ -1,3 +1,3 @@
 <template>
-  <h1>Progress</h1>
+  <h1 id="progress">Progress</h1>
 </template>

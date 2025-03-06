@@ -1,3 +1,3 @@
 <template>
-  <h1>Activities</h1>
+  <h1 id="activities">Activities</h1>
 </template>

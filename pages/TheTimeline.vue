@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-7">
+  <div id="timeline" class="mt-7">
     <ul>
       <TimelineItem 
         v-for="timelineItem in timelineItems"
@@ -18,7 +18,7 @@ defineProps({
     type: Array,
     required: true,
     validator(timelineItems) {
-      return timelineItems.every(({ hour}) => typeof hour === 'number' && hour >= 0 && hour < HOURS_IN_DAY)
+      return timelineItems.every(({ hour }) => typeof hour === 'number' && hour >= 0 && hour < HOURS_IN_DAY)
     }
   }
 })
