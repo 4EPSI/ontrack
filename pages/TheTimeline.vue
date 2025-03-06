@@ -11,14 +11,14 @@
 </template>
 
 <script setup>
-import { HOURS_IN_DAY } from '~/constants';
+import { isTimelineItemValid } from '../validators.js'
 import TimelineItem from '../components/TimelineItem.vue';
 defineProps({
   timelineItems: {
     type: Array,
     required: true,
     validator(timelineItems) {
-      return timelineItems.every(({ hour }) => typeof hour === 'number' && hour >= 0 && hour < HOURS_IN_DAY)
+      return timelineItems.every(isTimelineItemValid)
     }
   }
 })
