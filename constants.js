@@ -7,6 +7,8 @@ export const PAGE_PROGRESS = 'progress';
 // TIMELINE
 export const HOURS_IN_DAY = 24
 
+
+// ICON
 export const NAV_ITEMS = {
   [PAGE_TIMELINE]: ClockIcon,
   [PAGE_ACTIVITIES]: ListBulletIcon,
