@@ -11,15 +11,13 @@
 </template>
 
 <script setup>
-import { isTimelineItemValid } from '../validators.js'
+import { validateTimelineItems } from '../validators.js'
 import TimelineItem from '../components/TimelineItem.vue';
 defineProps({
   timelineItems: {
     type: Array,
     required: true,
-    validator(timelineItems) {
-      return timelineItems.every(isTimelineItemValid)
-    }
+    validate: validateTimelineItems
   }
 })
 </script>
