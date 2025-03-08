@@ -1,9 +1,9 @@
 <template>
   <div class="flex gap-2">
-    <BaseButton>
+    <BaseButton @click="emit('select', null)">
       <XMarkIcon class="h-8" />
     </BaseButton>
-    <select class="w-full truncate rounded bg-gray-100 py-1 px-2 text-2xl">
+    <select @change="emit('select', +$event.target.value)" class="w-full truncate rounded bg-gray-100 py-1 px-2 text-2xl">
       <option selected disabled value="">{{ placeholder }}</option>
       <option 
         v-for="{ value, label } in options" 
@@ -32,6 +32,12 @@ defineProps({
   placeholder: {
     type: String,
     required: true
+  }
+})
+
+const emit = defineEmits({
+  select(value) {
+    return typeof value === 'number' || value === null
   }
 })
 </script>

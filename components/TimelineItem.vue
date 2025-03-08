@@ -6,7 +6,12 @@
       {{ timelineItem.hour }}:00
     </nuxt-link>
 
-    <BaseSelect :selected="selectedActivityId" :options="options" placeholder="Rest" />
+    <BaseSelect 
+      :selected="selectedActivityId" 
+      :options="options" 
+      placeholder="Rest" 
+      @select="selectedActivityId = $event"
+    />
   </li>
 </template>
 
@@ -35,5 +40,5 @@ const options = [
   { value: 3, label: 'Training' },
 ]
 
-const selectedActivityId = ref(3)
+const selectedActivityId = ref(1)
 </script>
