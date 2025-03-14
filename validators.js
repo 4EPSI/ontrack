@@ -8,6 +8,10 @@ export const isTimelineItemValid = ({ hour }) => {
   return isHourValid(hour)
 }
 
+export const isHourValid = (hour) => {
+  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
+}
+
 export const validateTimelineItems = (timelineItems) => {
   return timelineItems.every(isTimelineItemValid)
 }
@@ -29,9 +33,6 @@ const isSelectOptionValid = ({ value, label }) => {
   return isNumber(value) && isString(label)
 }
 
-const isHourValid = (hour) => {
-  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
-}
 
 const isBetween = (value, start, end) => {
   return value >= start && value <= end
