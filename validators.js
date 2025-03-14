@@ -5,7 +5,7 @@ export const isPageValid = (pages) => {
 }
 
 export const isTimelineItemValid = ({ hour }) => {
-  return typeof hour === 'number' && hour >= MIDNIGHT_HOUR && hour < HOURS_IN_DAY
+  return isHourValid(hour)
 }
 
 export const validateTimelineItems = (timelineItems) => {
@@ -16,6 +16,39 @@ export const validateSelectOptions = (options) => {
   return options.every(isSelectOptionValid)
 }
 
+
+export const isUndefinedOrNull = (value) => {
+  return isUndefined(value) || isNull(value)
+}
+
+export const isNumberOrNull = (value) => {
+  return isNumber(value) || isNull(value)
+}
+
 const isSelectOptionValid = ({ value, label }) => {
-  return typeof value === 'number' && typeof label === 'string'
+  return isNumber(value) && isString(label)
+}
+
+const isHourValid = (hour) => {
+  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
+}
+
+const isBetween = (value, start, end) => {
+  return value >= start && value <= end
+}
+
+const isNumber = (value) => {
+  return typeof value === 'number'
+}
+
+const isString = (value) => {
+  return typeof value === 'string'
+}
+
+const isNull = (value) => {
+  return value === null
+}
+
+const isUndefined = (value) => {
+  return value === undefined
 }
