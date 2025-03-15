@@ -18,10 +18,10 @@ export const validateActivities = (activities) => {
 }
 
 export const isActivityValid = (activity) => {
-  return isNotEmpty(activity)
+  return isNotEmptyString(activity)
 }
 
-const isNotEmpty = (value) => {
+const isNotEmptyString = (value) => {
   return isString(value) && value.length > 0
 }
 
@@ -47,7 +47,7 @@ export const isNumberOrNull = (value) => {
 }
 
 const isSelectOptionValid = ({ value, label }) => {
-  return isNumber(value) && isString(label)
+  return isNumber(value) && isNotEmptyString(label)
 }
 
 
