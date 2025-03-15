@@ -8,6 +8,18 @@ export const isTimelineItemValid = ({ hour }) => {
   return isHourValid(hour)
 }
 
+export const validateActivities = (activities) => {
+  return activities.every(isActivityValid)
+}
+
+export const isActivityValid = (activity) => {
+  return isNotEmpty(activity)
+}
+
+const isNotEmpty = (value) => {
+  return isString(value) && value.length > 0
+}
+
 export const isHourValid = (hour) => {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
 }

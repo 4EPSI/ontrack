@@ -4,8 +4,7 @@
       <ActivityItem 
         v-for="activity in activities" 
         :key="activity" 
-        :activity="activity" 
-        :periodSelectOptions="periodSelectOptions" 
+        :activity="activity"
       />
     </ul>
   </div>
@@ -13,6 +12,13 @@
 
 <script setup>
 import ActivityItem from '~/components/ActivityItem.vue';
+import { validateActivities } from '../validators.js'
 
-const activities = ['Coding', 'Reading', 'Training']
+defineProps({
+  activities: {
+    type: Array,
+    required: true,
+    validator: validateActivities
+  }
+})
 </script>

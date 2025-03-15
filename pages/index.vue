@@ -5,7 +5,7 @@
 
   <main class="flex flex-grow flex-col">
     <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timelineItems="timelineItems" />
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
@@ -25,6 +25,8 @@ import { normalizePageHash, generateTimelineItems } from '../functions'
 const currentPage = ref(PAGE_TIMELINE);
 
 const timelineItems = generateTimelineItems()
+
+const activities = ['Coding', 'Reading', 'Training']
 
 onMounted(() => {
   currentPage.value = normalizePageHash()
