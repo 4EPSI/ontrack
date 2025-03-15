@@ -5,7 +5,7 @@
 
   <main class="flex flex-grow flex-col">
     <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timelineItems="timelineItems" :activitySelectOptions="activitySelectOptions" />
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" @deleteActivity="deleteActivity" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
@@ -26,9 +26,9 @@ const currentPage = ref(PAGE_TIMELINE);
 
 const timelineItems = generateTimelineItems()
 
-const activities = ['Coding', 'Reading', 'Training']
+const activities = ref(['Coding', 'Reading', 'Training'])
 
-const activitySelectOptions = generateActivityOptions(activities)
+const activitySelectOptions = generateActivityOptions(activities.value)
 
 onMounted(() => {
   currentPage.value = normalizePageHash()
@@ -36,5 +36,9 @@ onMounted(() => {
 
 function goTo(page) {
   currentPage.value = page
+}
+
+const deleteActivity = (activity) => {
+  activities.value.splice(activities.value.indexOf(activity), 1)
 }
 </script>
