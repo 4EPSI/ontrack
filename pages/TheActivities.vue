@@ -8,8 +8,14 @@
         @delete="emit('deleteActivity', activity)"
       />
     </ul>
-    <form @submit.prevent="" class="sticky bottom-[57px] flex gap-2 border-t bg-white p-4">
-      <input class="w-full rounded border px-4 text-xl" placeholder="Activity nam" type="text">
+    <form @submit.prevent="emit('createActivity', newActivity)" class="sticky bottom-[57px] flex gap-2 border-t bg-white p-4">
+      <input 
+        class="w-full rounded border px-4 text-xl" 
+        placeholder="Activity nam" 
+        type="text" 
+        v-model="newActivity"
+        @input="newActivity = $event.target.value"
+      />
       <BaseButton>
         <PlusIcon class="h-8" />
       </BaseButton>
@@ -32,6 +38,9 @@ defineProps({
 })
 
 const emit = defineEmits({
-  deleteActivity: isActivityValid
+  deleteActivity: isActivityValid,
+  createActivity: isActivityValid
 })
+
+let newActivity = ''
 </script>
