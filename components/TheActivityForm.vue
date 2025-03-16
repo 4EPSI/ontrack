@@ -26,7 +26,6 @@ const submit = async () => {
   emit('submit', activity.value)
   activity.value = ''
 
-
   await nextTick()
   window.scrollTo(0, document.body.scrollHeight)
 }
