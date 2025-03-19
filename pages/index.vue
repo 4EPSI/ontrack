@@ -38,7 +38,8 @@ import { normalizePageHash, generateTimelineItems, generateActivityOptions, gene
 
 const currentPage = ref(PAGE_TIMELINE);
 const activities = useState('activities', () => generateActivities() || []);
-const timelineItems = useState('timelineItems', generateTimelineItems(activities.value));
+// const timelineItems = useState('timelineItems', generateTimelineItems(activities.value));
+const timelineItems = useState('timelineItems', () => generateTimelineItems(activities.value));
 const activitySelectOptions = useState('activitySelectOptions', () => generateActivityOptions(activities.value));
 // const timelineItems = ref(generateTimelineItems())
 
