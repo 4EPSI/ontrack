@@ -38,7 +38,7 @@ import { normalizePageHash, generateTimelineItems, generateActivityOptions, gene
 
 const currentPage = ref(PAGE_TIMELINE);
 const activities = useState('activities', () => generateActivities() || []);
-const timelineItems = useState('timelineItems', generateTimelineItems);
+const timelineItems = useState('timelineItems', generateTimelineItems(activities.value));
 const activitySelectOptions = useState('activitySelectOptions', () => generateActivityOptions(activities.value));
 // const timelineItems = ref(generateTimelineItems())
 
@@ -62,6 +62,7 @@ const deleteActivity = (activity) => {
   timelineItems.value.forEach(timelineItem => {
     if(timelineItem.activityId === activity.id) {
       timelineItem.activityId = null
+      timelineItem.activitySeconds = 0
     }
   })
   activities.value.splice(activities.value.indexOf(activity), 1)
