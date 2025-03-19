@@ -17,8 +17,14 @@ export const validateActivities = (activities) => {
   return activities.every(isActivityValid)
 }
 
-export const isActivityValid = (activity) => {
-  return isNotEmptyString(activity)
+export const isActivityValid = ({ id, name, secondsToComplete }) => {
+  return [
+    isNotEmptyString(id),
+    isNotEmptyString(name),
+    isNumber(secondsToComplete)
+  ].every(Boolean)
+
+  // return isNotEmptyString(activity)
 }
 
 const isNotEmptyString = (value) => {
@@ -42,6 +48,10 @@ export const isUndefinedOrNull = (value) => {
   return isUndefined(value) || isNull(value)
 }
 
+export const isSelectValueValid = (value) => {
+  return isNotEmptyString(value) || isNumberOrNull(value)
+}
+
 export const isNumberOrNull = (value) => {
   return isNumber(value) || isNull(value)
 }
@@ -50,8 +60,12 @@ export const isUndefined = (value) => {
   return value === undefined
 }
 
+export const isNull = (value) => {
+  return value === null
+}
+
 const isSelectOptionValid = ({ value, label }) => {
-  return isNumber(value) && isNotEmptyString(label)
+  return (isNumber(value) || isNotEmptyString(value)) && isNotEmptyString(label)
 }
 
 
@@ -67,6 +81,3 @@ const isString = (value) => {
   return typeof value === 'string'
 }
 
-const isNull = (value) => {
-  return value === null
-}

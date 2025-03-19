@@ -4,9 +4,9 @@
       class="w-full rounded border px-4 text-xl" 
       placeholder="Activity nam" 
       type="text" 
-      v-model="activity"
+      v-model="name"
     />
-    <BaseButton :disabled="activity.trim() === ''">
+    <BaseButton :disabled="name.trim() === ''">
       <PlusIcon class="h-8" />
     </BaseButton>
   </form>
@@ -17,18 +17,23 @@ import { ref, nextTick } from 'vue'
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import BaseButton from './BaseButton.vue'
 import { isActivityValid } from '../validators.js'
+import { id, } from '~/functions'
 
 const emit = defineEmits({
   submit: isActivityValid
 })
 
 const submit = async () => {
-  emit('submit', activity.value)
-  activity.value = ''
+  emit('submit', {
+    id: id(),
+    name: name.value,
+    secondsToComplete: 0
+  })
+  name.value = ''
 
   await nextTick()
   window.scrollTo(0, document.body.scrollHeight)
 }
 
-const activity = ref('')
+const name = ref('')
 </script>
