@@ -17,6 +17,7 @@
       :activities="activities" 
       @deleteActivity="deleteActivity" 
       @createActivity="createActivity"
+      @setActivitySecondsToComplete="setActivitySecondsToComplete"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
@@ -36,12 +37,14 @@ import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '../constants'
 import { normalizePageHash, generateTimelineItems, generateActivityOptions, generateActivities } from '../functions'
 
 const currentPage = ref(PAGE_TIMELINE);
+const activities = useState('activities', () => generateActivities() || []);
+const timelineItems = useState('timelineItems', generateTimelineItems);
+const activitySelectOptions = useState('activitySelectOptions', () => generateActivityOptions(activities.value));
+// const timelineItems = ref(generateTimelineItems())
 
-const timelineItems = ref(generateTimelineItems())
+// const activities = ref(generateActivities())
 
-const activities = ref(generateActivities())
-
-const activitySelectOptions = computed(() => generateActivityOptions(activities.value))
+// const activitySelectOptions = computed(() => generateActivityOptions(activities.value))
 
 onMounted(() => {
   currentPage.value = normalizePageHash()
@@ -64,7 +67,11 @@ const deleteActivity = (activity) => {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-const setTimelineItemActivity = ({ timelineItem, activity }) => {
-  timelineItem.activityId = activity?.id || null
+const setTimelineItemActivity = (timelineItem, activity) => {
+  timelineItem.activityId = activity.id
+}
+
+const setActivitySecondsToComplete = (activity, secondsToComplete) => {
+  activity.secondsToComplete = secondsToComplete
 }
 </script>

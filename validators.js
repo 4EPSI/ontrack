@@ -18,6 +18,10 @@ export const validateActivities = (activities) => {
 }
 
 export const isActivityValid = ({ id, name, secondsToComplete }) => {
+  if(isNull(id)) {
+    return true
+  }
+
   return [
     isNotEmptyString(id),
     isNotEmptyString(name),
@@ -64,6 +68,10 @@ export const isNull = (value) => {
   return value === null
 }
 
+export const isNumber = (value) => {
+  return typeof value === 'number'
+}
+
 const isSelectOptionValid = ({ value, label }) => {
   return (isNumber(value) || isNotEmptyString(value)) && isNotEmptyString(label)
 }
@@ -71,10 +79,6 @@ const isSelectOptionValid = ({ value, label }) => {
 
 const isBetween = (value, start, end) => {
   return value >= start && value <= end
-}
-
-const isNumber = (value) => {
-  return typeof value === 'number'
 }
 
 const isString = (value) => {
