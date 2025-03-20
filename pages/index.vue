@@ -9,6 +9,7 @@
       :timelineItems="timelineItems" 
       :activities="activities"
       :activitySelectOptions="activitySelectOptions" 
+      :currentPage="currentPage"
       @setTimelineItemActivity="setTimelineItemActivity"
     />
 
