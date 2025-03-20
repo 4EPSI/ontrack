@@ -8,6 +8,7 @@
         :activities="activities"
         :activitySelectOptions="activitySelectOptions"
         ref="timelineItemRefs"
+        @scrollToHour="scrollToHour"
         @selectActivity="emit('setTimelineItemActivity', timelineItem, $event )"
       />
     </ul>
@@ -57,17 +58,16 @@ const timelineItemRefs = ref([])
 watchPostEffect(async () => {
   if(props.currentPage === PAGE_TIMELINE) {
     await nextTick()
-    setTimeout(scrollToCurrentTimelineItem, 100)
+
+    setTimeout(() => scrollToHour(new Date().getHours()), 100)
   }
 })
 
-const scrollToCurrentTimelineItem = () => {
-  const currentHour = new Date().getHours()
-
-  if(currentHour === MIDNIGHT_HOUR) {
+const scrollToHour = (hour) => {
+  if(hour === MIDNIGHT_HOUR) {
     document.body.scrollIntoView()
   } else {
-    timelineItemRefs.value[currentHour - 1].$el.scrollIntoView()
+    timelineItemRefs.value[hour - 1].$el.scrollIntoView()
   }
 }
 </script>
