@@ -14,7 +14,7 @@
         :selected="activity.secondsToComplete || null"
         @select="emit('setSecondsToComplete', $event || 0)"
       />
-      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" :timelineItems="timelineItems" />
+      <ActivitySecondsToComplete v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
 </template>
@@ -22,7 +22,7 @@
 <script setup>
 import { TrashIcon } from '@heroicons/vue/24/outline';
 import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '../constants'
-import { isActivityValid, validateTimelineItems, isUndefined, isNumber } from '../validators.js'
+import { isActivityValid, isUndefined, isNumber } from '../validators.js'
 import BaseButton from '~/components/BaseButton.vue';
 import BaseSelect from '~/components/BaseSelect.vue';
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
@@ -32,11 +32,6 @@ defineProps({
     type: Object,
     required: true,
     validator: isActivityValid
-  },
-  timelineItems: {
-    type: Array,
-    required: true,
-    validator: validateTimelineItems
   },
 })
 

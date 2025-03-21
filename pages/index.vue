@@ -17,7 +17,6 @@
     <TheActivities 
       v-show="currentPage === PAGE_ACTIVITIES" 
       :activities="activities" 
-      :timelineItems="timelineItems" 
       @deleteActivity="deleteActivity" 
       @createActivity="createActivity"
       @setActivitySecondsToComplete="setActivitySecondsToComplete"
@@ -90,6 +89,7 @@ const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
 }
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('timelineItems', timelineItems.value)
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete
