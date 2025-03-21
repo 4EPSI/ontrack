@@ -7,8 +7,6 @@
     <TheTimeline 
       v-show="currentPage === PAGE_TIMELINE" 
       :timelineItems="timelineItems" 
-      :activities="activities"
-      :activitySelectOptions="activitySelectOptions" 
       :currentPage="currentPage"
       ref="timeline"
       @setTimelineItemActivity="setTimelineItemActivity"
@@ -89,7 +87,9 @@ const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
 }
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('activitySelectOptions', activitySelectOptions.value)
 provide('timelineItems', timelineItems.value)
+provide('activities', activities.value)
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete
