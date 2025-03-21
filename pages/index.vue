@@ -17,6 +17,7 @@
     <TheActivities 
       v-show="currentPage === PAGE_ACTIVITIES" 
       :activities="activities" 
+      :timelineItems="timelineItems" 
       @deleteActivity="deleteActivity" 
       @createActivity="createActivity"
       @setActivitySecondsToComplete="setActivitySecondsToComplete"
