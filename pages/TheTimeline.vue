@@ -59,15 +59,22 @@ watchPostEffect(async () => {
   if(props.currentPage === PAGE_TIMELINE) {
     await nextTick()
 
-    setTimeout(() => scrollToHour(new Date().getHours()), 100)
+    setTimeout(() => scrollToHour(null, false), 100)
   }
 })
 
-const scrollToHour = (hour) => {
+const scrollToHour = (hour = null, isSmooth = true) => {
+  hour ??= new Date().getHours()
+
+  const options = { behavior: isSmooth? 'smooth' : 'instant' }
   if(hour === MIDNIGHT_HOUR) {
-    document.body.scrollIntoView()
+    document.body.scrollIntoView(options)
   } else {
-    timelineItemRefs.value[hour - 1].$el.scrollIntoView()
+    timelineItemRefs.value[hour - 1].$el.scrollIntoView(options)
   }
 }
+
+defineExpose({
+  scrollToHour
+})
 </script>

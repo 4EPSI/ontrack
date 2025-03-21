@@ -10,6 +10,7 @@
       :activities="activities"
       :activitySelectOptions="activitySelectOptions" 
       :currentPage="currentPage"
+      ref="timeline"
       @setTimelineItemActivity="setTimelineItemActivity"
     />
 
@@ -41,6 +42,7 @@ const currentPage = ref(PAGE_TIMELINE);
 const activities = useState('activities', () => generateActivities() || []);
 // const timelineItems = useState('timelineItems', generateTimelineItems(activities.value));
 const timelineItems = useState('timelineItems', () => generateTimelineItems(activities.value));
+const timeline = ref()
 const activitySelectOptions = useState('activitySelectOptions', () => generateActivityOptions(activities.value));
 // const timelineItems = ref(generateTimelineItems())
 
@@ -53,6 +55,14 @@ onMounted(() => {
 })
 
 function goTo(page) {
+  if(currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
+    timeline.value.scrollToHour()
+  }
+
+  if(page !== PAGE_TIMELINE) {
+    document.body.scrollIntoView()
+  }
+
   currentPage.value = page
 }
 

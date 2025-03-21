@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :class="classes" to="/">
+  <nuxt-link :class="classes" >
     {{ formattedHour }}
   </nuxt-link>
 </template>
