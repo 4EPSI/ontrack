@@ -12,6 +12,7 @@
       :currentPage="currentPage"
       ref="timeline"
       @setTimelineItemActivity="setTimelineItemActivity"
+      @updateTimelineItemActivitySeconds="updateTimelineItemActivitySeconds"
     />
 
     <TheActivities 
@@ -83,6 +84,10 @@ const deleteActivity = (activity) => {
 
 const setTimelineItemActivity = (timelineItem, activity) => {
   timelineItem.activityId = activity.id
+}
+
+const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
+  timelineItem.activitySeconds += activitySeconds
 }
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
