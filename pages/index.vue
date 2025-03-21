@@ -12,7 +12,6 @@
       :currentPage="currentPage"
       ref="timeline"
       @setTimelineItemActivity="setTimelineItemActivity"
-      @updateTimelineItemActivitySeconds="updateTimelineItemActivitySeconds"
     />
 
     <TheActivities 
@@ -33,7 +32,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, provide } from 'vue';
 import TheTimeline from './TheTimeline.vue';
 import TheActivities from './TheActivities.vue';
 import TheProgress from './TheProgress.vue';
@@ -89,6 +88,8 @@ const setTimelineItemActivity = (timelineItem, activity) => {
 const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
   timelineItem.activitySeconds += activitySeconds
 }
+
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete
