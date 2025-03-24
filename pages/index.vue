@@ -90,7 +90,7 @@ provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('activitySelectOptions', activitySelectOptions.value)
 provide('timelineItems', timelineItems.value)
 provide('activities', activities.value)
-provide('periodSelectOptions', generatePeriodSelectOptions)
+provide('periodSelectOptions', generatePeriodSelectOptions())
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete
