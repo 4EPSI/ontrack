@@ -9,7 +9,6 @@
       :timelineItems="timelineItems" 
       :currentPage="currentPage"
       ref="timeline"
-      @setTimelineItemActivity="setTimelineItemActivity"
     />
 
     <TheActivities 
@@ -78,8 +77,8 @@ const deleteActivity = (activity) => {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
-const setTimelineItemActivity = (timelineItem, activity) => {
-  timelineItem.activityId = activity.id
+const setTimelineItemActivity = (timelineItem, activityId) => {
+  timelineItem.activityId = activityId
 }
 
 const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
@@ -89,8 +88,8 @@ const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('activitySelectOptions', activitySelectOptions.value)
 provide('timelineItems', timelineItems.value)
-provide('activities', activities.value)
 provide('periodSelectOptions', generatePeriodSelectOptions())
+provide('setTimelineItemActivity', setTimelineItemActivity)
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete
