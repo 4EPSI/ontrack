@@ -34,7 +34,7 @@ import TheTimeline from './TheTimeline.vue';
 import TheActivities from './TheActivities.vue';
 import TheProgress from './TheProgress.vue';
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '../constants'
-import { normalizePageHash, generateTimelineItems, generateActivityOptions, generateActivities } from '../functions'
+import { normalizePageHash, generateTimelineItems, generateActivityOptions, generateActivities, generatePeriodSelectOptions } from '../functions'
 
 const currentPage = ref(PAGE_TIMELINE);
 const activities = useState('activities', () => generateActivities() || []);
@@ -90,6 +90,7 @@ provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('activitySelectOptions', activitySelectOptions.value)
 provide('timelineItems', timelineItems.value)
 provide('activities', activities.value)
+provide('periodSelectOptions', generatePeriodSelectOptions)
 
 const setActivitySecondsToComplete = (activity, secondsToComplete) => {
   activity.secondsToComplete = secondsToComplete
