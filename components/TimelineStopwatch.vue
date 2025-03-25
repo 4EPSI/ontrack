@@ -16,13 +16,13 @@
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
+import { ref } from 'vue';
 import BaseButton from './BaseButton.vue'
 import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECOND } from '~/constants'
 import { ArrowPathIcon, PauseIcon, PlayIcon } from '@heroicons/vue/24/outline'
 import {  isTimelineItemValid } from '~/validators';
 import { currentHour, formatSeconds } from '~/functions'
-import { updateTimelineItemActivitySecondsKey } from '~/keys';
+import { updateTimelineItemActivitySeconds } from '~/timelineItems';
 
 const props = defineProps({
   timelineItem: {
@@ -31,8 +31,6 @@ const props = defineProps({
     validator: isTimelineItemValid
   },
 })
-
-const updateTimelineItemActivitySeconds = inject(updateTimelineItemActivitySecondsKey)
 
 
 const seconds = ref(props.timelineItem.activitySeconds)

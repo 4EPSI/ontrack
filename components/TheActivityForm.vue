@@ -13,11 +13,11 @@
 </template>
 
 <script setup>
-import { ref, inject, nextTick } from 'vue'
+import { ref, nextTick } from 'vue'
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import BaseButton from './BaseButton.vue'
 import { id, } from '~/functions'
-import { createActivityKey } from '~/keys'
+import { createActivity } from '~/activities'
 
 const submit = async () => {
   createActivity({
@@ -32,6 +32,4 @@ const submit = async () => {
 }
 
 const name = ref('')
-
-const createActivity = inject(createActivityKey)
 </script>
