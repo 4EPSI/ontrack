@@ -7,6 +7,11 @@ import {
 } from '../constants'
 import { isNull } from './validators';
 
+
+export const currentHour = () => {
+  return new Date().getHours()
+}
+
 export const formatSeconds = (seconds) => {
   const date = new Date()
   date.setTime(Math.abs(seconds) * MILLISECONDS_IN_SECOND)
