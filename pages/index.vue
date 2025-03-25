@@ -24,22 +24,15 @@ import TheTimeline from './TheTimeline.vue';
 import TheActivities from './TheActivities.vue';
 import TheProgress from './TheProgress.vue';
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '../constants'
-import { generateTimelineItems, generatePeriodSelectOptions } from '../functions'
+import { generatePeriodSelectOptions } from '../functions'
 import { currentPage, timelineRef } from '~/router';
 import * as keys from '~/keys'
 import { setActivitySecondsToComplete, createActivity, deleteActivity, useActivities, useActivitySelectOptions } from '~/activities';
+import { useTimelineItems, setTimelineItemActivity, updateTimelineItemActivitySeconds } from '~/timelineItems';
 
 const activities = useActivities();
 const activitySelectOptions = useActivitySelectOptions();
-const timelineItems = useState('timelineItems', () => generateTimelineItems(activities.value));
-
-const setTimelineItemActivity = (timelineItem, activityId) => {
-  timelineItem.activityId = activityId
-}
-
-const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
-  timelineItem.activitySeconds += activitySeconds
-}
+const timelineItems = useTimelineItems();
 
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
