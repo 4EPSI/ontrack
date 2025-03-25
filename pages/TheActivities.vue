@@ -5,7 +5,6 @@
         v-for="activity in activities" 
         :key="activity.id" 
         :activity="activity"
-        @delete="emit('deleteActivity', activity)"
       />
     </ul>
     <TheActivitiesEmptyState v-else />
@@ -15,7 +14,7 @@
 
 <script setup>
 import ActivityItem from '~/components/ActivityItem.vue';
-import { isActivityValid, validateActivities } from '../validators.js'
+import { validateActivities } from '../validators.js'
 import TheActivityForm from '../components/TheActivityForm.vue'
 import TheActivitiesEmptyState from '~/components/TheActivitiesEmptyState.vue';
 
@@ -25,9 +24,5 @@ defineProps({
     required: true,
     validator: validateActivities
   },
-})
-
-const emit = defineEmits({
-  deleteActivity: isActivityValid,
 })
 </script>
