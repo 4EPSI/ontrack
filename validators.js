@@ -1,7 +1,11 @@
 import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGHT_HOUR, BUTTON_TYPES } from "./constants"
 
-export const isPageValid = (pages) => {
-  return Object.keys(NAV_ITEMS).includes(pages)
+export const isPageValid = (page) => {
+  return NAV_ITEMS.some(navItem => navItem.page === page)
+}
+
+export const isNavItemValid = (navItem) => {
+  return NAV_ITEMS.includes(navItem)
 }
 
 export const isButtonTypeValid = (type) => {
