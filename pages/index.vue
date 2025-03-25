@@ -2,16 +2,8 @@
   <TheHeader />
 
   <main class="flex flex-grow flex-col">
-    <TheTimeline 
-      v-show="currentPage === PAGE_TIMELINE" 
-      :timelineItems="timelineItems" 
-      ref="timelineRef"
-    />
-
-    <TheActivities 
-      v-show="currentPage === PAGE_ACTIVITIES" 
-      :activities="activities" 
-    />
+    <TheTimeline v-show="currentPage === PAGE_TIMELINE" ref="timelineRef"/>
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
@@ -39,7 +31,6 @@ provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.createActivityKey, createActivity)
 provide(keys.deleteActivityKey, deleteActivity)
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
-provide(keys.timelineItemsKey, readonly(timelineItems))
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 

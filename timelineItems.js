@@ -15,6 +15,12 @@ export const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds)
   timelineItem.activitySeconds += activitySeconds
 }
 
+export const getTotalActivitySeconds = (activity) => {
+  return useTimelineItems().value
+    .filter((timelineItem) => timelineItem.activityId === activity.id)
+    .reduce((totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds), 0)
+}
+
 const generateTimelineItems = (activities) => {
   return [...Array(HOURS_IN_DAY).keys()].map((hour) => ({
     hour,
