@@ -24,6 +24,7 @@ import { inject } from 'vue';
 import { TrashIcon } from '@heroicons/vue/24/outline';
 import { BUTTON_TYPE_DANGER } from '../constants'
 import { isActivityValid } from '../validators.js'
+import { deleteActivityKey, periodSelectOptionsKey, setActivitySecondsToCompleteKey } from '~/keys';
 import BaseButton from '~/components/BaseButton.vue';
 import BaseSelect from '~/components/BaseSelect.vue';
 import ActivitySecondsToComplete from './ActivitySecondsToComplete.vue'
@@ -36,7 +37,7 @@ defineProps({
   },
 })
 
-const deleteActivity = inject('deleteActivity')
-const periodSelectOptions = inject('periodSelectOptions')
-const setActivitySecondsToComplete= inject('setActivitySecondsToComplete')
+const deleteActivity = inject(deleteActivityKey)
+const periodSelectOptions = inject(periodSelectOptionsKey)
+const setActivitySecondsToComplete= inject(setActivitySecondsToCompleteKey)
 </script>

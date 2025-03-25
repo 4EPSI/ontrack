@@ -22,6 +22,7 @@ import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECO
 import { ArrowPathIcon, PauseIcon, PlayIcon } from '@heroicons/vue/24/outline'
 import {  isTimelineItemValid } from '~/validators';
 import { formatSeconds } from '~/functions'
+import { updateTimelineItemActivitySecondsKey } from '~/keys';
 
 const props = defineProps({
   timelineItem: {
@@ -31,7 +32,7 @@ const props = defineProps({
   },
 })
 
-const updateTimelineItemActivitySeconds = inject('updateTimelineItemActivitySeconds')
+const updateTimelineItemActivitySeconds = inject(updateTimelineItemActivitySecondsKey)
 
 
 const seconds = ref(props.timelineItem.activitySeconds)
