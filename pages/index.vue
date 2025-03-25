@@ -1,6 +1,6 @@
 <template>
   <TheHeader 
-    @navigate="goTo($event)"
+    @navigate="navigate"
   />
 
   <main class="flex flex-grow flex-col">
@@ -8,7 +8,7 @@
       v-show="currentPage === PAGE_TIMELINE" 
       :timelineItems="timelineItems" 
       :currentPage="currentPage"
-      ref="timeline"
+      ref="timelineRef"
     />
 
     <TheActivities 
@@ -20,7 +20,7 @@
 
   <TheNav 
     :current-page="currentPage" 
-    @navigate="goTo($event)" 
+    @navigate="navigate" 
   />
 </template>
 
@@ -30,35 +30,13 @@ import TheTimeline from './TheTimeline.vue';
 import TheActivities from './TheActivities.vue';
 import TheProgress from './TheProgress.vue';
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '../constants'
-import { normalizePageHash, generateTimelineItems, generateActivityOptions, generateActivities, generatePeriodSelectOptions } from '../functions'
+import { generateTimelineItems, generateActivityOptions, generateActivities, generatePeriodSelectOptions } from '../functions'
+import { currentPage, navigate, timelineRef } from '~/router';
 
-const currentPage = ref(PAGE_TIMELINE);
+
 const activities = useState('activities', () => generateActivities() || []);
-// const timelineItems = useState('timelineItems', generateTimelineItems(activities.value));
 const timelineItems = useState('timelineItems', () => generateTimelineItems(activities.value));
-const timeline = ref()
 const activitySelectOptions = useState('activitySelectOptions', () => generateActivityOptions(activities.value));
-// const timelineItems = ref(generateTimelineItems())
-
-// const activities = ref(generateActivities())
-
-// const activitySelectOptions = computed(() => generateActivityOptions(activities.value))
-
-onMounted(() => {
-  currentPage.value = normalizePageHash()
-})
-
-function goTo(page) {
-  if(currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
-    timeline.value.scrollToHour()
-  }
-
-  if(page !== PAGE_TIMELINE) {
-    document.body.scrollIntoView()
-  }
-
-  currentPage.value = page
-}
 
 const createActivity = (activity) => {
   activities.value.push(activity)

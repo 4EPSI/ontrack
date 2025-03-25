@@ -17,22 +17,15 @@ export const formatSeconds = (seconds) => {
 }
 
 export const normalizePageHash = () => {
-  const page = window.location.hash.slice(1);
-  if(isPageValid[page]) {
-    return page
+  if (typeof window !== 'undefined') {
+    const page = window.location.hash.slice(1);
+    if (isPageValid[page]) {
+      return page;
+    }
+    window.location.hash = PAGE_TIMELINE;
+    return PAGE_TIMELINE;
   }
-  window.location.hash = PAGE_TIMELINE
-  return PAGE_TIMELINE
-  // if(process.client) {
-
-  //   if(isPageValid[page]) {
-  //     return page
-  //   }
-
-  //   // window.location.hash = PAGE_TIMELINE
-  //   // return PAGE_TIMELINE
-  // }
-  // return PAGE_TIMELINE
+  return PAGE_TIMELINE;
 }
 
 export const normalSelectValue = (value) => {
