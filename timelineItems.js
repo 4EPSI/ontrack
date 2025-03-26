@@ -14,7 +14,7 @@ export const updateTimelineItem = (timelineItem, fields) => {
 export const resetTimelineItemActivities = (activity) => {
   const timelineItems = useTimelineItems()
   timelineItems.value
-    .filter(timelineItem => timelineItem.activityId === activity.id)
+    .filter((timelineItem) => hasActivity(timelineItem, activity))
     .forEach(timelineItem => updateTimelineItem(timelineItem,  {
       activityId: null,
       activitySeconds: 0
@@ -23,8 +23,12 @@ export const resetTimelineItemActivities = (activity) => {
 
 export const getTotalActivitySeconds = (activity) => {
   return useTimelineItems().value
-    .filter((timelineItem) => timelineItem.activityId === activity.id)
+    .filter((timelineItem) => hasActivity(timelineItem, activity))
     .reduce((totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds), 0)
+}
+
+const hasActivity = (timelineItem, activity) => {
+  return timelineItem.activityId === activity.id
 }
 
 const generateTimelineItems = (activities) => {
