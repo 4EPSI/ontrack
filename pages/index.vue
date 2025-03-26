@@ -11,19 +11,15 @@
 </template>
 
 <script setup>
-import { provide } from 'vue';
 import TheTimeline from './TheTimeline.vue';
 import TheActivities from './TheActivities.vue';
 import TheProgress from './TheProgress.vue';
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from '../constants'
 import { currentPage, timelineRef } from '~/router';
-import * as keys from '~/keys'
-import { deleteActivity, useActivities, useActivitySelectOptions } from '~/activities';
+import { useActivities, useActivitySelectOptions } from '~/activities';
 import { useTimelineItems } from '~/timelineItems';
 
 const activities = useActivities();
 const activitySelectOptions = useActivitySelectOptions();
 const timelineItems = useTimelineItems();
-
-provide(keys.deleteActivityKey, deleteActivity)
 </script>

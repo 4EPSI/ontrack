@@ -14,12 +14,6 @@ export const deleteActivity = (activity) => {
   const activities = useActivities();
   const timelineItems = useState('timelineItems')
 
-  timelineItems.value
-    .filter(timelineItem => timelineItem.activityId === activity.id)
-    .forEach(timelineItem => updateTimelineItem(timelineItem,  {
-      activityId: null,
-      activitySeconds: 0
-  }))
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
