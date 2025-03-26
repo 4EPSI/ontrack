@@ -10,6 +10,6 @@ import { currentPage ,navigate } from '~/router';
 import { scrollToCurrentHour } from '~/timelineItems'
 
 const handleClick = () => {
-  currentPage.value === PAGE_TIMELINE ? scrollToCurrentHour() : navigate(PAGE_TIMELINE)
+  currentPage.value === PAGE_TIMELINE ? scrollToCurrentHour(true) : navigate(PAGE_TIMELINE)
 }
 </script>

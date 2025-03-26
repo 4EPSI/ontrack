@@ -30,7 +30,7 @@ export const getTotalActivitySeconds = (activity) => {
     .reduce((totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds), 0)
 }
 
-export const scrollToCurrentHour = (isSmooth = true) => {
+export const scrollToCurrentHour = (isSmooth = false) => {
   scrollToHour(currentHour(), isSmooth)
 }
 
