@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import BaseButton from './BaseButton.vue'
 import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECOND } from '~/constants'
 import { ArrowPathIcon, PauseIcon, PlayIcon } from '@heroicons/vue/24/outline'
@@ -38,10 +38,14 @@ const isRunning = ref(false)
 
 const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
 
+watch(
+  () => props.timelineItem.activityId, 
+  () => updateTimelineItemActivitySeconds(props.timelineItem, seconds.value)
+)
+
 const start = () => {
   isRunning.value = setInterval(() => {
-    // emit('updateSeconds', 1)
-    updateTimelineItemActivitySeconds(props.timelineItem, 1)
+    updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds + 1)
 
     seconds.value++
   }, MILLISECONDS_IN_SECOND);
@@ -54,7 +58,7 @@ const stop = () => {
 
 const reset = () => {
   stop()
-  updateTimelineItemActivitySeconds(props.timelineItem, -seconds.value)
+  updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds - seconds.value)
   seconds.value = 0
 }
 </script>

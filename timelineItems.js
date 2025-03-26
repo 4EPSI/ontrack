@@ -12,7 +12,7 @@ export const setTimelineItemActivity = (timelineItem, activityId) => {
 }
 
 export const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
-  timelineItem.activitySeconds += activitySeconds
+  timelineItem.activitySeconds = activitySeconds
 }
 
 export const getTotalActivitySeconds = (activity) => {
