@@ -10,15 +10,15 @@ export const createActivity = (activity) => {
   activities.value.push(activity)
 }
 
+export const updateActivity = (activity, fields) => {
+  return Object.assign(activity, fields)
+}
+
 export const deleteActivity = (activity) => {
   const activities = useActivities();
   const timelineItems = useState('timelineItems')
 
   activities.value.splice(activities.value.indexOf(activity), 1)
-}
-
-export const setActivitySecondsToComplete = (activity, secondsToComplete) => {
-  activity.secondsToComplete = secondsToComplete || 0
 }
 
 const generateActivities = () => {
