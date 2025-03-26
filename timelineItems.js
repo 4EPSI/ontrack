@@ -7,12 +7,8 @@ export const useTimelineItems = () => {
   return useState('timelineItems', () => generateTimelineItems(activities));
 }
 
-export const setTimelineItemActivity = (timelineItem, activityId) => {
-  timelineItem.activityId = activityId
-}
-
-export const updateTimelineItemActivitySeconds = (timelineItem, activitySeconds) => {
-  timelineItem.activitySeconds = activitySeconds
+export const updateTimelineItem = (timelineItem, fields) => {
+  return Object.assign(timelineItem, fields)
 }
 
 export const getTotalActivitySeconds = (activity) => {

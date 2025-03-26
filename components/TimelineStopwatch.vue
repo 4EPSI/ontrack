@@ -22,7 +22,7 @@ import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECO
 import { ArrowPathIcon, PauseIcon, PlayIcon } from '@heroicons/vue/24/outline'
 import {  isTimelineItemValid } from '~/validators';
 import { currentHour, formatSeconds } from '~/functions'
-import { updateTimelineItemActivitySeconds } from '~/timelineItems';
+import { updateTimelineItem } from '~/timelineItems';
 
 const props = defineProps({
   timelineItem: {
@@ -40,12 +40,12 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
 
 watch(
   () => props.timelineItem.activityId, 
-  () => updateTimelineItemActivitySeconds(props.timelineItem, seconds.value)
+  () => updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value })
 )
 
 const start = () => {
   isRunning.value = setInterval(() => {
-    updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds + 1)
+    updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds + 1 })
 
     seconds.value++
   }, MILLISECONDS_IN_SECOND);
@@ -58,7 +58,7 @@ const stop = () => {
 
 const reset = () => {
   stop()
-  updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds - seconds.value)
+  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds - seconds.value })
   seconds.value = 0
 }
 </script>

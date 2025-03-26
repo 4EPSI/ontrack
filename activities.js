@@ -1,5 +1,6 @@
 import { id } from "./functions";
 import { SECONDS_IN_HOUR } from "./constants";
+import { updateTimelineItem } from "./timelineItems";
 
 export const useActivities = () => useState('activities', () => generateActivities() || []);
 export const useActivitySelectOptions = () => computed(() => generateActivityOptions(useActivities().value));
@@ -13,12 +14,12 @@ export const deleteActivity = (activity) => {
   const activities = useActivities();
   const timelineItems = useState('timelineItems')
 
-  timelineItems.value.forEach(timelineItem => {
-    if(timelineItem.activityId === activity.id) {
-      timelineItem.activityId = null
-      timelineItem.activitySeconds = 0
-    }
-  })
+  timelineItems.value
+    .filter(timelineItem => timelineItem.activityId === activity.id)
+    .forEach(timelineItem => updateTimelineItem(timelineItem,  {
+      activityId: null,
+      activitySeconds: 0
+  }))
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
