@@ -1,16 +1,16 @@
 <template>
   <div class="flex w-full gap-2">
     <BaseButton :disabled="!seconds" @click="reset" :type="BUTTON_TYPE_DANGER">
-      <ArrowPathIcon class="h-8" />
+      <BaseIcon name="ArrowPath" class="h-8" />
     </BaseButton>
     <div class="flex flex-grow items-center rounded bg-gray-100 px-2 font-mono text-3xl">
       {{ formatSeconds(seconds) }}
     </div>
     <BaseButton v-if="isRunning" @click="stop" :type="BUTTON_TYPE_WARNING">
-      <PauseIcon class="h-8" />
+      <BaseIcon name="Pause" class="h-8" />
     </BaseButton>
     <BaseButton v-else @click="start" :disabled="isStartButtonDisabled" :type="BUTTON_TYPE_SUCCESS">
-      <PlayIcon class="h-8" />
+      <BaseIcon name="Play" class="h-8" />
     </BaseButton>
   </div>
 </template>
@@ -19,7 +19,7 @@
 import { ref, watch } from 'vue';
 import BaseButton from './BaseButton.vue'
 import { BUTTON_TYPE_DANGER, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECOND } from '~/constants'
-import { ArrowPathIcon, PauseIcon, PlayIcon } from '@heroicons/vue/24/outline'
+import BaseIcon from '~/components/BaseIcon.vue';
 import {  isTimelineItemValid } from '~/validators';
 import { currentHour, formatSeconds } from '~/functions'
 import { updateTimelineItem } from '~/timelineItems';

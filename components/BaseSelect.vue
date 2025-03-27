@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-2">
     <BaseButton :type="BUTTON_TYPE_NEUTRAL" @click="select(null)">
-      <XMarkIcon class="h-8" />
+      <BaseIcon name="XMark" class="h-8" />
     </BaseButton>
     <select @change="select($event.target.value)" class="w-full truncate rounded bg-gray-100 py-1 px-2 text-2xl">
       <option :selected="isNotSelected" disabled value="">{{ placeholder }}</option>
@@ -19,9 +19,9 @@
 
 <script setup>
 import { computed } from 'vue';
-import { XMarkIcon } from '@heroicons/vue/24/outline';
 import { BUTTON_TYPE_NEUTRAL } from '~/constants';
 import BaseButton from './BaseButton.vue';
+import BaseIcon from '~/components/BaseIcon.vue';
 import { validateSelectOptions, isUndefinedOrNull, isSelectValueValid, } from '../validators';
 import { normalSelectValue } from '~/functions'
 

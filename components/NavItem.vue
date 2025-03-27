@@ -1,7 +1,7 @@
 <template>
   <li class="flex-1">
     <nuxt-link :to="`#${navItem.page}`" :class="classes" @click="navigate(navItem.page)">
-      <component :is="navItem.icon" class="h-6 w-6" /> {{ navItem.page }}
+      <BaseIcon :name="navItem.icon" class="h-6 w-6" /> {{ navItem.page }}
     </nuxt-link>
   </li>
 </template>
@@ -10,6 +10,7 @@
 import { computed } from 'vue';
 import { navigate, currentPage } from '~/router'
 import { isNavItemValid } from '~/validators';
+import BaseIcon from '~/components/BaseIcon.vue';
 
 const props = defineProps({
   navItem: {
