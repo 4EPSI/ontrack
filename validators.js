@@ -40,7 +40,7 @@ export const isActivityValid = ({ id, name, secondsToComplete }) => {
   // return isNotEmptyString(activity)
 }
 
-const isNotEmptyString = (value) => {
+export const isNotEmptyString = (value) => {
   return isString(value) && value.length > 0
 }
 

@@ -1,16 +1,16 @@
 <template>
   <div class="flex w-full gap-2">
     <BaseButton :disabled="!seconds" @click="reset" :type="BUTTON_TYPE_DANGER">
-      <BaseIcon :name="ICON_ARROW_PATH" class="h-8" />
+      <BaseIcon :name="ICON_ARROW_PATH" />
     </BaseButton>
     <div class="flex flex-grow items-center rounded bg-gray-100 px-2 font-mono text-3xl">
       {{ formatSeconds(seconds) }}
     </div>
     <BaseButton v-if="isRunning" @click="stop" :type="BUTTON_TYPE_WARNING">
-      <BaseIcon :name="ICON_PAUSE" class="h-8" />
+      <BaseIcon :name="ICON_PAUSE" />
     </BaseButton>
     <BaseButton v-else @click="start" :disabled="isStartButtonDisabled" :type="BUTTON_TYPE_SUCCESS">
-      <BaseIcon :name="ICON_PLAY" class="h-8" />
+      <BaseIcon :name="ICON_PLAY" />
     </BaseButton>
   </div>
 </template>
