@@ -44,6 +44,7 @@ export const HOURS_IN_DAY = 24
 export const MIDNIGHT_HOUR = 0
 
 export const PERIOD_SELECT_OPTIONS = generatePeriodSelectOptions()
-// export const PERIOD_SELECT_OPTIONS = (() => generatePeriodSelectOptions())();
-// export const PERIOD_SELECT_OPTIONS = () => generatePeriodSelectOptions();
+
+
+export const HUNDRED_PERCENT = 100
 
