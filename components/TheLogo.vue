@@ -8,8 +8,11 @@
 import { PAGE_TIMELINE } from '../constants'
 import { currentPage ,navigate } from '~/router';
 import { scrollToCurrentHour } from '~/timelineItems'
+import { nextTick } from 'vue';
 
-const handleClick = () => {
-  currentPage.value === PAGE_TIMELINE ? scrollToCurrentHour(true) : navigate(PAGE_TIMELINE)
+const handleClick = async () => {
+  currentPage.value === PAGE_TIMELINE 
+  ? await nextTick().then(() => scrollToCurrentHour(true))
+  : navigate(PAGE_TIMELINE)
 }
 </script>
