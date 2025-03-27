@@ -1,16 +1,16 @@
 <template>
   <div class="flex w-full gap-2">
     <BaseButton :disabled="!seconds" @click="reset" :type="BUTTON_TYPE_DANGER">
-      <BaseIcon name="ArrowPath" class="h-8" />
+      <BaseIcon :name="ICON_ARROW_PATH" class="h-8" />
     </BaseButton>
     <div class="flex flex-grow items-center rounded bg-gray-100 px-2 font-mono text-3xl">
       {{ formatSeconds(seconds) }}
     </div>
     <BaseButton v-if="isRunning" @click="stop" :type="BUTTON_TYPE_WARNING">
-      <BaseIcon name="Pause" class="h-8" />
+      <BaseIcon :name="ICON_PAUSE" class="h-8" />
     </BaseButton>
     <BaseButton v-else @click="start" :disabled="isStartButtonDisabled" :type="BUTTON_TYPE_SUCCESS">
-      <BaseIcon name="Play" class="h-8" />
+      <BaseIcon :name="ICON_PLAY" class="h-8" />
     </BaseButton>
   </div>
 </template>
@@ -23,6 +23,7 @@ import BaseIcon from '~/components/BaseIcon.vue';
 import {  isTimelineItemValid } from '~/validators';
 import { currentHour, formatSeconds } from '~/functions'
 import { updateTimelineItem } from '~/timelineItems';
+import { ICON_ARROW_PATH, ICON_PAUSE, ICON_PLAY } from '~/icons';
 
 const props = defineProps({
   timelineItem: {
