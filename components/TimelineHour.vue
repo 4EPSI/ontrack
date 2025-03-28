@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :class="classes" >
+  <nuxt-link @click.prevent="scrollToHour(hour)" :class="classes" >
     {{ formattedHour }}
   </nuxt-link>
 </template>
@@ -7,6 +7,7 @@
 <script setup>
 import { isHourValid } from '../validators.js'
 import { currentHour } from '../functions.js'
+import { scrollToHour } from '~/timelineItems.js'
 
 const props = defineProps({
   hour: {

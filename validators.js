@@ -40,10 +40,6 @@ export const isActivityValid = ({ id, name, secondsToComplete }) => {
   // return isNotEmptyString(activity)
 }
 
-export const isNotEmptyString = (value) => {
-  return isString(value) && value.length > 0
-}
-
 export const isHourValid = (hour) => {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
 }
@@ -88,6 +84,10 @@ const isSelectOptionValid = ({ value, label }) => {
 
 const isBetween = (value, start, end) => {
   return value >= start && value <= end
+}
+
+const isNotEmptyString = (value) => {
+  return isString(value) && value.length > 0
 }
 
 const isString = (value) => {

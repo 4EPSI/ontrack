@@ -2,7 +2,7 @@
   <li 
     class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4" 
   >
-    <TimelineHour :hour="timelineItem.hour" @click.prevent="emit('scrollToHour')" />
+    <TimelineHour :hour="timelineItem.hour" />
 
     <BaseSelect 
       placeholder="Rest" 
@@ -18,7 +18,7 @@
 
 <script setup>
 import BaseSelect from './BaseSelect.vue'
-import { isTimelineItemValid, isUndefined } from '../validators.js'
+import { isTimelineItemValid } from '../validators.js'
 import TimelineHour from './TimelineHour.vue'
 import TimelineStopwatch from './TimelineStopwatch.vue'
 import { updateTimelineItem } from '~/timelineItems'
@@ -33,8 +33,4 @@ defineProps({
 })
 
 const activitySelectOptions = useActivitySelectOptions()
-
-const emit = defineEmits({
-  scrollToHour: isUndefined
-})
 </script>
