@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link @click="handleClick" :to="`#${PAGE_TIMELINE}`">
+  <nuxt-link @click.prevent="handleClick" :to="`#${PAGE_TIMELINE}`">
     <img class="h-9" src="../assets/img/logo.png" alt="Logo">
   </nuxt-link>
 </template>
@@ -12,7 +12,7 @@ import { nextTick } from 'vue';
 
 const handleClick = async () => {
   currentPage.value === PAGE_TIMELINE 
-  ? await nextTick().then(() => scrollToCurrentHour(true))
-  : navigate(PAGE_TIMELINE)
+  ? await nextTick().then(() => setTimeout(() => scrollToCurrentHour(true), 100))
+  : navigate(PAGE_TIMELINE) || setTimeout(() => scrollToCurrentHour(true), 300);
 }
 </script>
