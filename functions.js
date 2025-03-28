@@ -1,7 +1,10 @@
 import { 
   SECONDS_IN_MINUTE,
   MINUTES_IN_HOUR,
-  MILLISECONDS_IN_SECOND 
+  MILLISECONDS_IN_SECOND ,
+  HUNDRED_PERCENT,
+  LOW_PERCENT,
+  MEDIUM__PERCENT
 } from '../constants'
 import { isNull } from './validators';
 
@@ -23,6 +26,13 @@ export const normalSelectValue = (value) => {
   return isNull(value) || isNaN(value) ? value : +value
 }
 
+export const getProgressColorClass = (percentage) => {
+  if(percentage < LOW_PERCENT) return 'bg-red-500'
+  if(percentage < MEDIUM__PERCENT) return 'bg-yellow-500'
+  if(percentage < HUNDRED_PERCENT) return 'bg-blue-500'
+
+  return 'bg-green-500'
+}
 
 export const id = () => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2)
